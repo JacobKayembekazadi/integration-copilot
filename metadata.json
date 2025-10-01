@@ -1,0 +1,5 @@
+{
+  "name": "Logistics Integration Wizard",
+  "description": "A mini-app that takes an API key and system type (e.g., Shopify, WMS) and uses AI to auto-generate connection code in Python/Node.js and fetch example data, demonstrating rapid integration capabilities.",
+  "requestFramePermissions": []
+}
