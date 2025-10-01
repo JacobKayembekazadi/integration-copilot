@@ -76,11 +76,11 @@ export const generateIntegrationCode = async (
         let modelName: string;
         try {
             modelName = await resolveModel(effectiveKey, preferredModel);
-        } catch (e) {
-            if (e instanceof Error && /No available Gemini model/.test(e.message)) {
+        } catch (_e) {
+            if (_e instanceof Error && /No available Gemini model/.test(_e.message)) {
                 return 'No accessible Gemini model found with this API key. Confirm the key has access to public Gemini models (Gemini 1.5 Flash or Pro).';
             }
-            throw e;
+            throw _e;
         }
         const model = getModel(effectiveKey, modelName);
         const conversationContext = history
@@ -137,7 +137,8 @@ export const generateIntegrationCode = async (
             let parsed: any;
             try {
                 parsed = JSON.parse(text);
-            } catch (e) {
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            } catch (_e) {
                 throw new Error('Failed to parse model JSON. Raw output: ' + text.substring(0, 400));
             }
             if (!parsed.pythonCode || !parsed.nodeCode) {
